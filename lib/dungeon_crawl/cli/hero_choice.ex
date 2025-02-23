@@ -1,5 +1,6 @@
 defmodule DungeonCrawl.CLI.HeroChoice do
   alias Mix.Shell.IO, as: Shell
+  alias DungeonCrawl.CLI.BaseCommands
 
   def start do
     # Shell.cmd("clear")
@@ -12,34 +13,34 @@ defmodule DungeonCrawl.CLI.HeroChoice do
 
     heros
     |> Enum.map(&(&1.name))
-    |> display_options
-    |> generate_question
+    |> BaseCommands.display_options
+    |> BaseCommands.generate_question
     |> Shell.prompt
-    |> parse_answer
+    |> BaseCommands.parse_answer
     |> find_hero_by_index.()
     |> confirm_hero
 
   end
 
-  defp display_options(hero_names) do
-    hero_names
-    |> Enum.with_index(1)
-    |> Enum.each(fn {hero_name, index} -> Shell.info("#{index} - #{hero_name}") end)
+  # defp display_options(hero_names) do
+  #   hero_names
+  #   |> Enum.with_index(1)
+  #   |> Enum.each(fn {hero_name, index} -> Shell.info("#{index} - #{hero_name}") end)
 
-    hero_names
-  end
+  #   hero_names
+  # end
 
-  defp generate_question(options) do
-    Shell.info("")
-    # IO.inspect(options, label: "generate_question receives: ")
-    options = Enum.join(1..Enum.count(options), ", ")
-    "Which one to choose? [#{options}]\n"
-  end
+  # defp generate_question(options) do
+  #   Shell.info("")
+  #   # IO.inspect(options, label: "generate_question receives: ")
+  #   options = Enum.join(1..Enum.count(options), ", ")
+  #   "Which one to choose? [#{options}]\n"
+  # end
 
-  defp parse_answer(answer) do
-    {chosen, _} = Integer.parse(answer)
-    chosen - 1
-  end
+  # defp parse_answer(answer) do
+  #   {chosen, _} = Integer.parse(answer)
+  #   chosen - 1
+  # end
 
   defp confirm_hero(chosen_hero) do
     # Shell.cmd("clear")
