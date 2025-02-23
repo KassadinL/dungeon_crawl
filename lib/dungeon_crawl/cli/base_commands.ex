@@ -4,7 +4,7 @@ defmodule DungeonCrawl.CLI.BaseCommands do
   def display_options(options) do
     options
     |> Enum.with_index(1)
-    |> Enum.each(fn {option, index} -> Shell.info("#{index} - #{option}") end)
+    |> Enum.each(fn {option, index} -> Shell.info("#{index} - #{DungeonCrawl.Display.info(option)}") end)
 
     options
   end
@@ -17,8 +17,17 @@ defmodule DungeonCrawl.CLI.BaseCommands do
   end
 
   def parse_answer(answer) do
-    {chosen, _} = Integer.parse(answer)
-    chosen - 1
+    # {chosen, _} = Integer.parse(answer)
+    case Integer.parse(answer) do
+      {chosen, _} -> chosen - 1
+      :error -> choose_one_more_time()
+    end
+    # chosen - 1
+  end
+
+  defp choose_one_more_time do
+    answer = Shell.prompt("It's time to choose~\nGive me your answer\n")
+    parse_answer(answer)
   end
 
 end
