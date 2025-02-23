@@ -53,6 +53,7 @@ defmodule DungeonCrawl.CLI.HeroChoice do
       Shell.info("")
       Shell.info("Ok, little #{String.downcase(chosen_hero.name)}.")
       Shell.info("So...let's start this adventure....")
+      chosen_hero
     else
       start()
     end
