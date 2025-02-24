@@ -26,7 +26,7 @@ defmodule DungeonCrawl.CLI.BaseCommands do
   end
 
   defp choose_one_more_time do
-    answer = Shell.prompt("It's time to choose~\nGive me your answer\n")
+    answer = Shell.prompt("It's time to choose~\nGive me your answer.\n")
     parse_answer(answer)
   end
 

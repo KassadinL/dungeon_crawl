@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.Start do
-  @shortdoc "Start Dungeon Crawl Application"
+  @shortdoc "Start Dungeon Crawl Game"
+  @moduledoc "Printed when user requests `mix help start`"
 
   use Mix.Task
 

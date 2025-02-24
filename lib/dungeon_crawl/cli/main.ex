@@ -16,14 +16,24 @@ defmodule DungeonCrawl.CLI.Main do
   end
 
   defp hero_choice do
-    DungeonCrawl.CLI.HeroChoice.start()
+    hero = DungeonCrawl.CLI.HeroChoice.start()
+    %{hero | name: "You"}
   end
 
+  defp crawl(%{hit_points: 0}, _rooms) do
+    # Shell.prompt("")
+    Shell.info("... ...")
+    Shell.info("Unfortunately your wounds are too many to keep walking.")
+    Shell.info("You fall onto the floor without strength to carry on.")
+    Shell.info("Game over!")
+    Shell.prompt("Press Enter to end this adventure.")
+  end
   defp crawl(character, rooms) do
     Shell.info("")
     Shell.info("You keep moving forward to the next room.")
     Shell.prompt("Press Enter to continue")
     Shell.info("")
+    Shell.info(DungeonCrawl.Character.current_status(character))
 
     rooms
     |> Enum.random
@@ -40,24 +50,8 @@ defmodule DungeonCrawl.CLI.Main do
   defp handle_action_result({_, :exit}) do
     Shell.info("You found the exit. Congratulations~")
   end
-  defp handle_action_result({character, action_id}) do
-    case action_id do
-      :rest -> take_a_sleep(character)
-      _ -> Shell.info("No time to sleep?\nOk...")
-    end
-
+  defp handle_action_result({character, _action_id}) do
     crawl(character, DungeonCrawl.Room.all())
   end
 
-  defp take_a_sleep(_character) do
-    alias Mix.Shell.IO, as: Shell
-
-    Shell.info("Take a nap.")
-    # Shell.info("You will recover 3 hit points.")
-    Process.sleep(1000)
-    Shell.info("Open your eyes, this is a new day.")
-    Shell.prompt("Press Enter to continue your adventure.")
-    # character.hit_point = max(character.hit_point + 3, character.max_hit_point)
-    # character
-  end
 end

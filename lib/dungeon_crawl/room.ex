@@ -14,8 +14,13 @@ defmodule DungeonCrawl.Room do
       },
       %Room{
         description: "You can see the light of day. You found the exit.",
-        actions: [Action.forward()],
+        actions: [Action.backward(), Action.forward()],
         trigger: Triggers.Exit,
+      },
+      %Room{
+        description: "You can see an enemy blocking your path.",
+        actions: [Action.forward()],
+        trigger: Triggers.Enemy,
       },
     ]
   end
