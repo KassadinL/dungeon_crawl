@@ -1,21 +1,11 @@
 # DungeonCrawl
 
-**TODO: Add description**
+## Dungeon Crawl Game
 
-## Installation
+An Elixir parctice project from the book [Learn Functional Programming with Elixir](https://pragprog.com/titles/cdc-elixir/learn-functional-programming-with-elixir/).
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `dungeon_crawl` to your list of dependencies in `mix.exs`:
+## Start game
 
-```elixir
-def deps do
-  [
-    {:dungeon_crawl, "~> 0.1.0"}
-  ]
-end
+```Elixir
+mix start
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/dungeon_crawl>.
-
